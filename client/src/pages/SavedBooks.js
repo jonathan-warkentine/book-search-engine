@@ -11,11 +11,10 @@ import { removeBookId } from '../utils/localStorage';
 const SavedBooks = () => {
   
   // fetch-only to force re-rendering in case of added/deleted books
-  const { loading, error, data } = useQuery(QUERY_ME, { fetchPolicy: 'network-only' }); 
+  const { loading, error, data, refetch } = useQuery(QUERY_ME, { fetchPolicy: 'network-only' }); 
   const [ deleteBook, { delBkEr, delBkData} ] = useMutation(DELETE_BOOK);  
-  const [ test, setTest ] = useState('test');
 
-  const handleDeleteBook = async (bookId) => {
+  const handleDeleteBook = async bookId => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -32,7 +31,7 @@ const SavedBooks = () => {
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
       // also update the page:
-      setTest('doese this work?')
+      refetch();
     } catch (err) {
       console.error(err);
     }

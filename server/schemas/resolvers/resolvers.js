@@ -59,7 +59,6 @@ const resolvers = {
         },
 
         save_book: async (_, { bookInput } ) => {
-            console.log(bookInput)
             try {
                 const user = await User.findOneAndUpdate(
                     // TODO: use context instead of hardcoding _id field below
