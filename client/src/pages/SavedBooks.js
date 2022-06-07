@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { useMutation } from '@apollo/client';
@@ -12,7 +12,7 @@ const SavedBooks = () => {
   
   // fetch-only to force re-rendering in case of added/deleted books
   const { loading, error, data, refetch } = useQuery(QUERY_ME, { fetchPolicy: 'network-only' }); 
-  const [ deleteBook, { delBkEr, delBkData} ] = useMutation(DELETE_BOOK);  
+  const [ deleteBook ] = useMutation(DELETE_BOOK);  
 
   const handleDeleteBook = async bookId => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -21,8 +21,7 @@ const SavedBooks = () => {
       return false;
     }
     try {
-      // TODO: assign resulting user object to userData?
-       deleteBook({
+      await deleteBook({
         variables: {
           bookId
         }

@@ -12,8 +12,8 @@ const resolvers = {
 
         me: async (_, args) => {
             // if (context?.user) {
-            //     // TODO: incorporate context.user into this query
-            //     // return await User.findOne({ _id: context.user._id });
+            //     TODO: incorporate context.user into this query
+            //     return await User.findOne({ _id: context.user._id });
             // }
             return await User.findOne({ _id: "62978f70d9dc014c69a7f017"});
             // throw new AuthenticationError('You need to be logged in!');
