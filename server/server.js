@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: authMiddleware
 });
 
 server.start()
