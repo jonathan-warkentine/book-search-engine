@@ -45,10 +45,10 @@ const resolvers = {
             return { token, user };
         },
 
-        delete_book: async (_, { bookId }) => {
+        delete_book: async (_, { bookId }, context) => {
             const user = await User.findOneAndUpdate(
                 // TODO: use context instead of hardcoding _id field below
-                { _id: '62978f70d9dc014c69a7f017' },
+                { _id: context.user._id },
                 { $pull: { savedBooks: { bookId } } },
                 { new: true }
               );
@@ -58,11 +58,11 @@ const resolvers = {
               return user;
         },
 
-        save_book: async (_, { bookInput } ) => {
+        save_book: async (_, { bookInput }, context ) => {
             try {
                 const user = await User.findOneAndUpdate(
                     // TODO: use context instead of hardcoding _id field below
-                    { _id: '62978f70d9dc014c69a7f017' },
+                    { _id: context.user._id },
                     { $addToSet: { savedBooks: bookInput } },
                     { new: true, runValidators: true }
                 );
