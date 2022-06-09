@@ -13,6 +13,19 @@ export const LOGIN_USER = gql `
     }
 `
 
+export const SIGNUP_USER = gql `
+    mutation SIGNUP_USER ($email: String!, $username: String!, $password: String!) {
+        signup (username: $username, email: $email, password: $password) {
+            token
+            user {
+                _id
+                username
+                email
+            }
+        }
+    }
+`
+
 export const DELETE_BOOK = gql `
     mutation DELETE_BOOK ($bookId: String!) {
         delete_book (bookId: $bookId) {

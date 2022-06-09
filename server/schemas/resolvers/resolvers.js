@@ -35,7 +35,6 @@ const resolvers = {
             }
 
             const token = signToken(user);
-            
             return {token, user};
         },
 
@@ -58,7 +57,8 @@ const resolvers = {
               return user;
         },
 
-        save_book: async (_, { bookInput }, context ) => {
+        save_book: async (_, {bookInput}, context ) => {
+
             try {
                 const user = await User.findOneAndUpdate(
                     // TODO: use context instead of hardcoding _id field below

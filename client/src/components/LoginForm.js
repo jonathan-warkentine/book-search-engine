@@ -45,7 +45,7 @@ const LoginForm = () => {
         throw new Error('something went wrong!');
       }
 
-      Auth.login(response.token);
+      Auth.login(response.data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
