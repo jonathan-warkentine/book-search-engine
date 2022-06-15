@@ -58,7 +58,7 @@ const SavedBooks = () => {
         <Container>
           <h2>
             {data.me.savedBooks?.length
-              ? `Viewing ${data.me.savedBooks.length} saved ${data.me.savedBooks.length === 1 ? 'book' : 'books'}:`
+              ? `Viewing ${data.me.savedBooks?.length} saved ${data.me.savedBooks?.length === 1 ? 'book' : 'books'}:`
               : 'You have no saved books!'}
           </h2>
           <CardColumns>
