@@ -46,7 +46,6 @@ const resolvers = {
 
         delete_book: async (_, { bookId }, context) => {
             const user = await User.findOneAndUpdate(
-                // TODO: use context instead of hardcoding _id field below
                 { _id: context.user._id },
                 { $pull: { savedBooks: { bookId } } },
                 { new: true }
